@@ -1,0 +1,57 @@
+# 构建输出目录
+build/
+dist/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C扩展
+*.so
+
+# 发布和打包
+*.spec
+*.egg
+*.egg-info/
+.eggs/
+.Python
+develop-eggs/
+eggs/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+
+# PyInstaller构建输出
+build/
+release/*.exe
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# IDE配置文件
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 本地日志和截图
+logs/
+screenshots/
+
+# 项目特定文件
+# 如果希望保留空的目录结构，可以在目录中添加.gitkeep文件
+# 但忽略目录中的其他文件
+screenshots/*
+!screenshots/.gitkeep
+
+# 配置文件(可选，如果包含敏感信息)
+# config/config.yaml
+
+# Windows特定文件
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
