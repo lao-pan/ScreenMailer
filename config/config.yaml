@@ -1,0 +1,53 @@
+# ScreenMailer 配置文件
+# 此为示例配置，请修改为适合您的设置
+
+# 邮件相关配置
+email:
+  # SMTP服务器设置
+  smtp_server: smtp.example.com
+  smtp_port: 587
+  use_ssl: false
+  
+  # 登录凭证
+  username: your_email@example.com
+  password: your_password_here
+  
+  # 发件人设置
+  sender_email: your_email@example.com
+  
+  # 收件人列表
+  recipients:
+    - recipient1@example.com
+    - recipient2@example.com
+  
+  # 邮件主题前缀
+  subject_prefix: '[ScreenMailer]'
+
+# 屏幕截图配置
+screenshot:
+  # 图片格式: png, jpg, jpeg, etc.
+  format: png
+  
+  # 图片质量(仅对jpg格式有效): 0-100
+  quality: 90
+  
+  # 截图区域，设置为null则截取全屏
+  # bbox格式: [left, top, right, bottom]
+  bbox: null
+
+# 任务调度配置
+scheduler:
+  # 截图间隔时间(秒)，默认300秒(5分钟)
+  screenshot_interval: 300
+  
+  # 每次任务执行时连续截取的截图数量
+  screenshot_count: 1
+  
+  # 连续截图之间的间隔时间(秒)
+  screenshot_delay: 0.5
+  
+  # 邮件发送间隔时间(秒)，默认3600秒(1小时)
+  email_interval: 3600
+  
+  # 是否在启动时立即执行一次任务
+  send_immediate: true
