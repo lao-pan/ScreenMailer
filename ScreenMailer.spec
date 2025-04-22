@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['gui_builder\\screenmailer_gui.py'],
+    ['f:\\workspace\\project\\ScreenMailer\\src\\gui\\screenmailer_gui.py'],
     pathex=[],
     binaries=[],
     datas=[('f:\\workspace\\project\\ScreenMailer\\src', 'src')],
@@ -35,5 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['f:\\workspace\\project\\ScreenMailer\\gui_builder\\icon.ico'],
+    icon=['f:\\workspace\\project\\ScreenMailer\\tools\\assets\\icon.ico'],
 )

@@ -1,6 +1,7 @@
 # 构建输出目录
 build/
 dist/
+tools/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -45,12 +46,9 @@ screenshots/
 # 项目特定文件
 # 如果希望保留空的目录结构，可以在目录中添加.gitkeep文件
 # 但忽略目录中的其他文件
-screenshots/*
-!screenshots/.gitkeep
-release/*
-!release/.gitkeep
-dist/*
-!dist/.gitkeep
+screenshots/
+release/
+dist/
 
 # 配置文件(可选，如果包含敏感信息)
 # config/config.yaml
@@ -60,3 +58,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# 个人特定文件
+开发记录.md
