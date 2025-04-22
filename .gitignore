@@ -2,6 +2,8 @@
 build/
 dist/
 tools/
+release/
+config/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -23,11 +25,6 @@ var/
 wheels/
 *.whl
 
-# PyInstaller构建输出
-build/
-dist/
-release/
-
 # 虚拟环境
 venv/
 env/
@@ -47,11 +44,9 @@ screenshots/
 # 如果希望保留空的目录结构，可以在目录中添加.gitkeep文件
 # 但忽略目录中的其他文件
 screenshots/
-release/
-dist/
 
 # 配置文件(可选，如果包含敏感信息)
-config/config.yaml
+
 
 # Windows特定文件
 Thumbs.db
@@ -61,3 +56,4 @@ $RECYCLE.BIN/
 
 # 个人特定文件
 开发记录.md
+ScreenMailer.spec
