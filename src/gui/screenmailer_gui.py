@@ -37,6 +37,12 @@ from src.utils.logger import setup_logger, get_logger
 # 设置日志
 logger = get_logger(__name__)
 
+def resource_path(relative_path):
+    # 兼容打包和源码运行
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class ScreenMailerGUI(QMainWindow):
     """ScreenMailer图形界面主窗口"""
     
@@ -48,6 +54,11 @@ class ScreenMailerGUI(QMainWindow):
         self.is_running = False
         self.config_manager = None
         self.config = None
+        self.last_screenshot_time = None
+        self.last_email_time = None
+        self.unsent_screenshot_count = 0
+        self.total_screenshots = 0
+        self.total_emails = 0
         
         # 设置应用程序数据目录
         self.setup_app_directories()
@@ -124,12 +135,8 @@ class ScreenMailerGUI(QMainWindow):
         """初始化用户界面"""
         self.setWindowTitle("ScreenMailer")
         self.setGeometry(100, 100, 800, 600)
-        
-        # 设置窗口图标 - 更新图标路径
-        tools_dir = os.path.join(project_root, "tools")
-        assets_dir = os.path.join(tools_dir, "assets")
-        icon_path = os.path.join(assets_dir, "icon.ico")
-        
+        # 设置窗口图标 - 统一使用ico
+        icon_path = resource_path("tools/assets/icon_1024.png")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
         
@@ -207,6 +214,9 @@ class ScreenMailerGUI(QMainWindow):
         stats_layout = QFormLayout()
         stats_group.setLayout(stats_layout)
         layout.addWidget(stats_group)
+        
+        self.total_screenshots = 0
+        self.total_emails = 0
         
         self.total_screenshots_label = QLabel("0")
         stats_layout.addRow("总截图数:", self.total_screenshots_label)
@@ -510,6 +520,7 @@ class ScreenMailerGUI(QMainWindow):
         self.screenshot_interval_spinbox.setRange(5, 86400)  # 5秒到24小时
         self.screenshot_interval_spinbox.setValue(300)  # 默认5分钟
         self.screenshot_interval_spinbox.setSuffix(" 秒")
+        self.screenshot_interval_spinbox.setToolTip("两次自动截图任务之间的时间间隔（单位：秒）")
         screenshot_schedule_layout.addRow("截图间隔:", self.screenshot_interval_spinbox)
         
         # 连续截图数量
@@ -524,6 +535,7 @@ class ScreenMailerGUI(QMainWindow):
         self.screenshot_delay_spinbox.setRange(0, 60)
         self.screenshot_delay_spinbox.setValue(1)
         self.screenshot_delay_spinbox.setSuffix(" 秒")
+        self.screenshot_delay_spinbox.setToolTip("每次连续截图时，每两张之间的间隔（单位：秒）")
         screenshot_schedule_layout.addRow("连续截图间隔:", self.screenshot_delay_spinbox)
         
         # 邮件调度设置组
@@ -885,11 +897,22 @@ class ScreenMailerGUI(QMainWindow):
                 QMessageBox.warning(self, "失败", "截图失败，请检查设置")
                 return
                 
+            # 更新时间和计数
+            now_str = datetime.now().strftime("%Y-%m-%d  %H:%M:%S")
+            self.last_screenshot_time = now_str
+            self.total_screenshots += len(screenshot_paths)
+            self.unsent_screenshot_count += len(screenshot_paths)
+            self.update_dashboard_counters()
+            
             # 发送邮件
             logger.info(f"发送手动截图邮件，共{len(screenshot_paths)}张")
             result = email_sender.send_monitor_email(screenshot_paths)
             
             if result:
+                self.last_email_time = now_str
+                self.total_emails += 1
+                self.unsent_screenshot_count = 0
+                self.update_dashboard_counters()
                 logger.info("手动发送邮件成功")
                 QMessageBox.information(self, "成功", f"已成功发送{len(screenshot_paths)}张截图")
                 
@@ -938,8 +961,14 @@ class ScreenMailerGUI(QMainWindow):
             hours, remainder = divmod(run_duration.seconds, 3600)
             minutes, seconds = divmod(remainder, 60)
             self.run_time_label.setText(f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+        self.update_dashboard_counters()
             
-            # TODO: 更新其他状态信息，如果scheduler实现了相应的接口
+    def update_dashboard_counters(self):
+        self.last_screenshot_label.setText(self.last_screenshot_time or "无")
+        self.last_email_label.setText(self.last_email_time or "无")
+        self.screenshot_count_label.setText(str(self.unsent_screenshot_count))
+        self.total_screenshots_label.setText(str(self.total_screenshots))
+        self.total_emails_label.setText(str(self.total_emails))
             
 def main():
     """主函数"""

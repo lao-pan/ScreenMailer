@@ -192,21 +192,16 @@ class Scheduler:
         if self.is_running:
             logger.warning("调度器已经在运行中")
             return
-            
+
         self.is_running = True
         self.thread = threading.Thread(target=self._run_scheduler)
         self.thread.daemon = True
         self.thread.start()
-        
+
         logger.info("调度器已启动")
-        
-        # 保持主线程运行
-        try:
-            while self.is_running:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            self.stop()
-            
+        # 移除主线程阻塞循环，避免卡死GUI
+        # 保持主线程运行的循环已删除
+
     def stop(self):
         """停止调度器"""
         if not self.is_running:
