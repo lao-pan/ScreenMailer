@@ -12,12 +12,17 @@ import time
 import logging
 from datetime import datetime
 
-# 导入项目模块
-from screenshot.capture import ScreenCapture
-from email.sender import EmailSender
-from scheduler.scheduler import Scheduler
-from config.config_manager import ConfigManager
-from utils.logger import setup_logger
+# 添加项目根目录到系统路径，确保可以正确导入模块
+project_root = os.path.dirname(os.path.dirname(__file__))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+# 导入项目模块 - 修正导入路径，避免与标准库冲突
+from src.screenshot.capture import ScreenCapture
+from src.email.sender import EmailSender  # 修改为完整导入路径
+from src.scheduler.scheduler import Scheduler
+from src.config.config_manager import ConfigManager
+from src.utils.logger import setup_logger
 
 def main():
     """主程序入口函数"""

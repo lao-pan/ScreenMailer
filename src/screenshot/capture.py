@@ -80,3 +80,25 @@ class ScreenCapture:
                 time.sleep(interval)
         
         return filepaths
+    
+    def cleanup_screenshots(self, screenshot_paths):
+        """
+        清理已发送的截图文件
+        
+        Args:
+            screenshot_paths (list): 要清理的截图文件路径列表
+        """
+        if not screenshot_paths:
+            return
+            
+        count = 0
+        for path in screenshot_paths:
+            try:
+                if os.path.exists(path):
+                    os.remove(path)
+                    count += 1
+                    logger.debug(f"已删除截图: {path}")
+            except Exception as e:
+                logger.error(f"删除截图失败: {path}, 错误: {str(e)}")
+                
+        logger.info(f"清理完成，共删除{count}张截图")

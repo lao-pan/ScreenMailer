@@ -1,0 +1,44 @@
+2025-04-23 03:10:46,707 - INFO - root - logger.py:60 - 日志系统初始化完成
+2025-04-23 03:10:46,707 - INFO - root - main.py:32 - ScreenMailer 启动中... 2025-04-23 03:10:46
+2025-04-23 03:10:46,709 - INFO - src.config.config_manager - config_manager.py:68 - 已从f:\workspace\project\ScreenMailer\config\config.yaml加载配置
+2025-04-23 03:10:46,709 - INFO - src.screenshot.capture - capture.py:36 - 截图模块初始化完成，截图将保存至: f:\workspace\project\ScreenMailer\screenshots
+2025-04-23 03:10:46,709 - INFO - src.email.sender - sender.py:42 - 邮件发送模块初始化完成
+2025-04-23 03:10:46,710 - INFO - src.scheduler.scheduler - scheduler.py:55 - 调度器初始化完成
+2025-04-23 03:10:46,710 - INFO - root - main.py:55 - 开始执行监控任务
+2025-04-23 03:10:46,711 - INFO - src.scheduler.scheduler - scheduler.py:127 - 已设置截图任务，每30秒执行一次
+2025-04-23 03:10:46,711 - INFO - src.scheduler.scheduler - scheduler.py:201 - 调度器已启动
+2025-04-23 03:10:46,711 - INFO - src.scheduler.scheduler - scheduler.py:133 - 已设置邮件发送任务，每120秒执行一次
+2025-04-23 03:10:46,711 - INFO - src.scheduler.scheduler - scheduler.py:174 - 立即执行一次截图任务
+2025-04-23 03:10:46,711 - INFO - src.scheduler.scheduler - scheduler.py:59 - 执行截图任务，将连续截取2张截图
+2025-04-23 03:10:47,945 - INFO - src.scheduler.scheduler - scheduler.py:71 - 截图任务完成，新增2张截图
+2025-04-23 03:10:47,945 - INFO - src.scheduler.scheduler - scheduler.py:179 - 立即执行一次邮件发送任务
+2025-04-23 03:10:47,945 - INFO - src.scheduler.scheduler - scheduler.py:92 - 执行邮件发送任务，将发送2张截图
+2025-04-23 03:10:48,845 - INFO - src.email.sender - sender.py:103 - 邮件发送成功，收件人: 1人
+2025-04-23 03:10:48,846 - INFO - src.scheduler.scheduler - scheduler.py:104 - 邮件发送成功，清空截图和日志
+2025-04-23 03:10:48,846 - INFO - src.screenshot.capture - capture.py:104 - 清理完成，共删除2张截图
+2025-04-23 03:10:48,846 - INFO - src.scheduler.scheduler - scheduler.py:183 - 调度器开始运行
+2025-04-23 03:11:16,899 - INFO - src.scheduler.scheduler - scheduler.py:59 - 执行截图任务，将连续截取2张截图
+2025-04-23 03:11:18,108 - INFO - src.scheduler.scheduler - scheduler.py:71 - 截图任务完成，新增2张截图
+2025-04-23 03:11:29,112 - INFO - src.scheduler.scheduler - scheduler.py:188 - 调度器已停止
+2025-04-23 03:11:29,113 - INFO - src.scheduler.scheduler - scheduler.py:223 - 调度器已停止
+2025-04-23 03:13:26,834 - INFO - root - logger.py:60 - 日志系统初始化完成
+2025-04-23 03:13:26,835 - INFO - root - main.py:32 - ScreenMailer 启动中... 2025-04-23 03:13:26
+2025-04-23 03:13:26,836 - INFO - src.config.config_manager - config_manager.py:68 - 已从f:\workspace\project\ScreenMailer\config\config.yaml加载配置
+2025-04-23 03:13:26,836 - INFO - src.screenshot.capture - capture.py:36 - 截图模块初始化完成，截图将保存至: f:\workspace\project\ScreenMailer\screenshots
+2025-04-23 03:13:26,836 - INFO - src.email.sender - sender.py:42 - 邮件发送模块初始化完成
+2025-04-23 03:13:26,836 - INFO - src.scheduler.scheduler - scheduler.py:55 - 调度器初始化完成
+2025-04-23 03:13:26,836 - INFO - root - main.py:55 - 开始执行监控任务
+2025-04-23 03:13:26,837 - INFO - src.scheduler.scheduler - scheduler.py:127 - 已设置截图任务，每30秒执行一次
+2025-04-23 03:13:26,837 - INFO - src.scheduler.scheduler - scheduler.py:201 - 调度器已启动
+2025-04-23 03:13:26,837 - INFO - src.scheduler.scheduler - scheduler.py:133 - 已设置邮件发送任务，每120秒执行一次
+2025-04-23 03:13:26,837 - INFO - src.scheduler.scheduler - scheduler.py:174 - 立即执行一次截图任务
+2025-04-23 03:13:26,837 - INFO - src.scheduler.scheduler - scheduler.py:59 - 执行截图任务，将连续截取4张截图
+2025-04-23 03:13:42,225 - INFO - src.scheduler.scheduler - scheduler.py:71 - 截图任务完成，新增4张截图
+2025-04-23 03:13:42,225 - INFO - src.scheduler.scheduler - scheduler.py:179 - 立即执行一次邮件发送任务
+2025-04-23 03:13:42,225 - INFO - src.scheduler.scheduler - scheduler.py:92 - 执行邮件发送任务，将发送4张截图
+2025-04-23 03:13:43,106 - INFO - src.email.sender - sender.py:103 - 邮件发送成功，收件人: 1人
+2025-04-23 03:13:43,107 - INFO - src.scheduler.scheduler - scheduler.py:104 - 邮件发送成功，清空截图和日志
+2025-04-23 03:13:43,108 - INFO - src.screenshot.capture - capture.py:104 - 清理完成，共删除4张截图
+2025-04-23 03:13:43,108 - INFO - src.scheduler.scheduler - scheduler.py:183 - 调度器开始运行
+2025-04-23 03:13:53,123 - INFO - src.scheduler.scheduler - scheduler.py:188 - 调度器已停止
+2025-04-23 03:13:53,123 - INFO - src.scheduler.scheduler - scheduler.py:223 - 调度器已停止
