@@ -57,3 +57,4 @@ $RECYCLE.BIN/
 # 个人特定文件
 开发记录.md
 ScreenMailer.spec
+.gitignore
