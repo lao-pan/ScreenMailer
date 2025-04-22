@@ -89,9 +89,55 @@ class ConfigManager:
             # 确保目录存在
             os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
             
+            # 创建带注释的配置文件内容
+            config_content = """# ScreenMailer 配置文件
+# 由系统自动生成于 {}
+
+# 邮件相关配置
+email:
+  # SMTP服务器地址（例如：smtp.gmail.com, smtp.qq.com）
+  smtp_server: ''
+  # SMTP服务器端口，常用端口：587(TLS)或465(SSL)
+  smtp_port: 587
+  # 是否使用SSL连接，如果端口是465，通常需要设置为true
+  use_ssl: false
+  # SMTP服务器登录用户名（通常是邮箱地址）
+  username: ''
+  # SMTP服务器登录密码（对于某些邮件服务商，可能需要使用应用专用密码）
+  password: ''
+  # 发件人邮箱地址
+  sender_email: ''
+  # 收件人邮箱地址列表
+  recipients: []
+  # 邮件主题前缀
+  subject_prefix: '[ScreenMailer]'
+
+# 截图相关配置
+screenshot:
+  # 截图格式，支持：png, jpg, jpeg, bmp
+  format: 'png'
+  # 图片质量，范围1-100，仅对jpg/jpeg格式有效
+  quality: 90
+  # 截图区域，格式为[x, y, width, height]，如不指定则截取全屏
+  bbox: null
+
+# 调度器配置
+scheduler:
+  # 截图间隔时间（秒）
+  screenshot_interval: 300
+  # 每次触发拍摄的截图数量
+  screenshot_count: 1
+  # 连续截图之间的延迟（秒）
+  screenshot_delay: 0.5
+  # 发送邮件的间隔时间（秒）
+  email_interval: 3600
+  # 是否立即发送第一封邮件
+  send_immediate: true
+""".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            
             # 写入默认配置
             with open(self.config_path, 'w', encoding='utf-8') as f:
-                yaml.dump(self.default_config, f, default_flow_style=False, sort_keys=False)
+                f.write(config_content)
                 
             logger.info(f"已创建默认配置文件: {self.config_path}")
             
